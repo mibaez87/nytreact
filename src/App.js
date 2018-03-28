@@ -8,7 +8,7 @@ import Home from "./components/Home/Home";
 const App = () => (
   <Router>
     <MuiThemeProvider>
-    <div class="App">
+    <div className="App">
     <header>
       <TitleCard />
       </header>
