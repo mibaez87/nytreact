@@ -26,11 +26,13 @@ class SearchCard extends Component {
         const {name, value} = event.target;
         this.setState({[name]: value});
     }
-    handleStartDateChange = (date) => {
-        this.setState({startDate: date})
+
+    handleStartDateChange = (event, date) => {
+        this.setState({startDate: date});
     }
-    handleEndDateChange = (date) => {
-        this.setState({endDate: date})
+
+    handleEndDateChange = (event, date) => {
+        this.setState({endDate: date});
     }
 
     render(){

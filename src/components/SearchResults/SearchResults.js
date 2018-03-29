@@ -14,7 +14,10 @@ const SearchResults = props => (
         <div>
             <List>
                 {props.results.map(result => (
+                    <div>
                     <ListItem onClick={() => window.open(result.web_url,'_blank')} key={result._id} primaryText={result.headline.print_headline} rightIcon={<RaisedButton label="Save" primary={true} style={style} />} />
+                    <Divider />
+                    </div>
                 ))}
             </List>
         </div>
