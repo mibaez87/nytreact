@@ -9,7 +9,7 @@ class Home extends Component {
 	};
 
 	componentDidMount(){
-		this.retrieveData(`florida`, '20170101', '20180101');
+		this.retrieveData();
 	}
 
 	retrieveData = (topic, startDate, endDate) => {
