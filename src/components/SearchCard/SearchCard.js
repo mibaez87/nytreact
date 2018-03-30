@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 import { Card, CardTitle } from 'material-ui/Card';
 import "./SearchCard.css";
 import TextField from 'material-ui/TextField';
@@ -12,14 +13,16 @@ const style = {
 class SearchCard extends Component {
     state = {
         topic: "",
-        startDate: "",
-        endDate: ""
+        startDate: {},
+        endDate: {}
     }
 
-    handleSubmit (event, props, topic, startDate, endDate){
+    handleSubmit (event, props, state){
         event.preventDefault();
-
-        this.props.search(topic, startDate, endDate);
+        const {topic, startDate, endDate} = this.state;
+        const formattedStartDate = moment(startDate).format('YYYYMMDD');
+        const formattedEndDate = moment(endDate).format('YYYYMMDD');
+        this.props.search(topic, formattedStartDate, formattedEndDate);
     }
 
     handleChange = (event) => {
@@ -39,7 +42,7 @@ class SearchCard extends Component {
         return (
             <Card>
                 <CardTitle title="Search" />
-                <form onSubmit={(event) => this.handleSubmit(event, this.props)} >
+                <form onSubmit={(event) => this.handleSubmit(event, this.props, this.state)} >
                     <div>
                         <TextField name="topic" value={this.state.topic} className="hint" hintText="Topic" onChange={this.handleChange} />
                     </div>

@@ -1,30 +1,26 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+
 var logger = require("morgan");
-var mongoose = require("mongoose");
 
-var PORT = 3000;
 
-var db = require("./models");
-// var Article = require("./models/Article.js");
-
-var app = express();
-
-app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/nytreact", {
-    useMongoClient: true
-});
 
-db.Article.create(data)
-    .then(function (dbArticle) {
-        console.log(dbArticle);
-    })
-    .catch(function (err) {
-        console.log(err.message);
+app.use(logger("dev"));
+
+
+mongoose.Promise = global.Promise;
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/nytreact", {
+        useMongoClient: true
     });
 
 // INSERT ROUTES HERE
